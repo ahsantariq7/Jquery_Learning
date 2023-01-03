@@ -1,0 +1,37 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+  <title>Use of moment JS to change date format in jquery</title>  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>   
+   
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>  
+</head>  
+<body>  
+   
+<div class="container">  
+  <h2>Examples of Date format:</h2>  
+  <ul>  
+    <li> May 16, 2020 : <span id="first_date"></span></li>  
+    <li>2020-05-16 : <span id="second_date"></span></li>  
+    <li>2020/05/16 : <span id="third_date"></span></li>  
+  </ul>  
+</div>  
+   
+</body>  
+   
+<script type="text/javascript">  
+  $(document).ready(function() {  
+   
+    var first_date = moment("May 16, 2020 ").format('DD-MM-YYYY');  
+    $("#first_date").text(first_date);  
+   
+    var second_date = moment("2020-05-16").format('DD-MM-YYYY');  
+    $("#second_date").text(second_date);  
+   
+    var third_date = moment("2020/05/16").format('DD/MM/YYYY');  
+    $("#third_date").text(third_date);  
+   
+  });  
+</script>  
+</html>  

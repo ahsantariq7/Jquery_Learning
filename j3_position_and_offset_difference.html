@@ -1,0 +1,25 @@
+<!DOCTYPE html>    
+<html>    
+<head>    
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>  
+<script>    
+$(document).ready(function(){    
+    $("#b1").click(function(){    
+        var x = $("h1").position();    
+     document.getElementById("p2").innerHTML = "Top = " + x.top + " Left = " + x.left;  
+    });    
+    $("#b2").click(function(){    
+        var y = $("h1").offset();    
+     document.getElementById("p2").innerHTML = "Top = " + y.top + " Left = " + y.left;  
+    });  
+});    
+</script>    
+</head>    
+<body>    
+<h1> Welcome to the javaTpoint.com </h1>    
+<p id = "p1"> Click the following buttons to get the position and offset of the above heading. </p>  
+<button id = "b1"> Position </button>    
+<button id = "b2"> Offset </button>    
+<p id = "p2"> </p>  
+</body>    
+</html>   

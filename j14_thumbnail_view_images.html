@@ -1,0 +1,164 @@
+<! DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">  
+    <title> Photo Gallery Slider with Thumbnails </title>  
+</head>  
+<style>  
+* {  
+    margin: 0;  
+    padding: 0;  
+    box-sizing: border-box;  
+}  
+body {  
+  background: -webkit-linear-gradient(45deg, #0BBDE5 0%, rgba(11, 189, 229, 0) 70%), -webkit-linear-gradient(315deg, #EC0432 10%, rgba(236, 4, 50, 0) 80%), -webkit-linear-gradient(225deg, #2305CC 10%, rgba(35, 5, 204, 0) 80%), -webkit-linear-gradient(135deg, #B4DC04 100%, rgba(180, 220, 4, 0) 70%);  
+background: linear-gradient(45deg, #0BBDE5 0%, rgba(11, 189, 229, 0) 70%), linear-gradient(135deg, #EC0432 10%, rgba(236, 4, 50, 0) 80%), linear-gradient(225deg, #2305CC 10%, rgba(35, 5, 204, 0) 80%), linear-gradient(315deg, #B4DC04 100%, rgba(180, 220, 4, 0) 70%);  
+}  
+.container {  
+    margin: 80px auto;  
+    text-align: center;  
+    width: 80%;  
+    box-shadow: 2px 2px 2px #bbb;  
+}  
+.container .master {  
+    margin: auto;  
+    width: 100%;  
+    border: 2px solid #ccc;  
+    padding: 5px;  
+}  
+.container .thumbnails {  
+    margin: auto;  
+    width: 100%;  
+    border: 2px solid #ccc;  
+    padding: 5px;  
+}  
+.container .master {  
+    padding-bottom: 0;  
+    position: relative;  
+}  
+.container .master img {  
+    z-index: 1;  
+    width: 100%;  
+    height: 99%  
+}  
+.container .master .fa-chevron-left {  
+    position: absolute;  
+    left: 5px;  
+    top: 5px;  
+    background-color: rgb(0,0,0, .7);  
+    color: #fff;  
+    padding: 10px 15px;  
+    z-index: 2;  
+    cursor: pointer;  
+animation: bounce 1600ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);  
+}  
+.container .master .fa-chevron-left:hover {  
+  padding-right: 24px;  
+  padding-left:8px;  
+}  
+  
+.container .master .fa-chevron-right {  
+    position: absolute;  
+    left: 5px;  
+    top: 5px;  
+    background-color: rgb(0,0,0, .7);  
+    color: #fff;  
+    padding: 10px 15px;  
+    z-index: 2;  
+    cursor: pointer;  
+animation: bounce 1600ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);  
+}  
+@keyframes bounce {  
+50% {  
+    transform: translateY(10px);  
+  }  
+}  
+.container .master .fa-chevron-right:hover {  
+  padding-right: 24px;  
+  padding-left:8px;  }
+.container .master .fa-chevron-right {  
+    right: 5px;  
+    left: auto;  
+}  
+.container .thumbnails {  
+    overflow: hidden;  
+}  
+.container .thumbnails img {  
+    float: left;  
+    width: 19.2%;  
+    outline: 2px solid #bbb;  
+    opacity: .6;  
+    cursor: pointer;  
+    transition: all .6s ease-in-out;  
+}  
+.container .thumbnails img:last-child {  
+    margin-right: 0!important;  
+}  
+.container .thumbnails img.active {  
+    outline: 2px solid #e63946;  
+    opacity: 1;  
+}  
+.container .thumbnails img.active:hover  
+    {  
+box-shadow: 2px 2px 4px 2px rgb(60, 255, 53);  
+    opacity: 0.3;  
+    filter: alpha(opacity=30);  
+ transform: scale(.9);  
+  transition: .4s;  
+    }  
+</style>  
+<body>  
+    <div class="container">          
+        <div class="master">  
+            <img src="1.jpg">  
+            <i class="fas fa-chevron-left"> </i>  
+            <i class="fas fa-chevron-right"> </i>  
+        </div>  
+        <div class="thumbnails">    
+            <img src="register.jpg">        
+            <img class="active" src="2.jpg">  
+            <img src="register.jpg">  
+            <img src="2.jpg">  
+            <img src="register.jpg">  
+        </div>  
+    </div>  
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">  
+ </script>  
+ <script>  
+ $(function () {      
+    $(".master").css ( {  
+        height: $(".master img").height() + 13  
+    } );  
+    var imagesNumber    = $(".thumbnails").children().length,  
+        marginBetweenImages =  1,  
+        totalMargins        = marginBetweenImages * (imagesNumber - 1),  
+        imageWidth          = (100 - totalMargins) / (imagesNumber);        
+    $(".thumbnails img").css( {  
+        width: imageWidth + "%",  
+        marginRight: marginBetweenImages + "%"  
+    } );  
+    $(".thumbnails img").on("click", function() {  
+        $(this).addClass("active").siblings().removeClass("active");  
+        $(".master img").hide().attr("src", $(this).attr("src")).fadeIn(300);  
+    } );  
+    $(".master .fas").on("click", function() {  
+        if($(this).hasClass("fa-chevron-left")) {  
+            if($(".thumbnails img.active").is(":first-child")) {  
+                $(".thumbnails img:last-child").click();  
+            } else {  
+                $(".thumbnails img.active").prev().click();  
+            }  
+        } else {  
+            if($(".thumbnails img.active").is(":last-child")) {  
+                $(".thumbnails img:first-child").click();  
+            } else {  
+                $(".thumbnails img.active").next().click();  
+            }  
+        }  
+    })  
+})  
+ </script>  
+</body>  
+</html>   

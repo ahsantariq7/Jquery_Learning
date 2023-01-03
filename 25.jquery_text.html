@@ -1,0 +1,32 @@
+<!--jQuery text()
+The jQuery text() method is used to set or return the text content of the selected elements.
+
+To return content: When this method is used to return content, it returns the combined text content of all matched elements without the HTML markup.
+
+To set content: When this method is used to set content, it overwrites the content of all matched elements.-->
+
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="utf-8">  
+  <title>text demo with Ahsan</title>  
+  <style>  
+  p {  
+    color: blue;  
+    margin: 8px;  
+  }  
+  b {  
+    color: red;  
+  }  
+  </style>  
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
+</head>  
+<body>  
+<p><b>Hello! </b>javatpoint.com</p>  
+<p></p>  
+<script>  
+var str = $( "p:first" ).text();  
+$( "p:last" ).html( str );  
+</script>  
+</body>  
+</html>  

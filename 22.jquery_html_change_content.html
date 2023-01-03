@@ -1,0 +1,30 @@
+<!--$(selector).html()  
+It is used to return content.
+
+$(selector).html(content)  
+It is used to set content.
+
+$(selector).html(function (index, currentcontent))  
+It is used to set content by calling function.
+
+The jQuery html() method is used either for set the content or return the content of the selected elements.-->
+
+<!DOCTYPE html>  
+<html>  
+<head>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
+<script>  
+$(document).ready(function(){  
+    $("button").click(function(){ 
+        alert($("#p").html("changes?"));   
+        $("p").html("Hello <b>Ahsan</b>");  
+    });  
+});  
+</script>  
+</head>  
+<body>  
+<button>Click here to change the content of all p elements</button>  
+<p>This is a paragraph.</p>  
+<p>This is another paragraph.</p>  
+</body>  
+</html>  
